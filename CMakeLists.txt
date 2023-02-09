@@ -92,6 +92,7 @@ if (NOT tacopie_library AND NOT USE_CUSTOM_TCP_CLIENT)
   set(BUILD_TESTS OFF)
   add_subdirectory(tacopie)
   # TODO: add alias library
+  set(tacopie_includes ${CMAKE_CURRENT_LIST_DIR}/tacopie/includes)
 endif ()
 
 set(cpp_redis_includes ${CMAKE_CURRENT_LIST_DIR}/includes)
@@ -146,7 +147,8 @@ target_link_libraries(${PROJECT_NAME} PRIVATE Threads::Threads)
 if (tacopie_library)
   target_link_libraries(${PROJECT_NAME} PUBLIC ${tacopie_library})
 else ()
-  target_link_libraries(${PROJECT_NAME} PUBLIC tacopie)
+  target_link_libraries(${PROJECT_NAME} PRIVATE tacopie)
+  target_include_directories(${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${tacopie_includes}>)
 endif ()
 
 ###
