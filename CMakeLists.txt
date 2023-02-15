@@ -122,7 +122,7 @@ configure_file("${PROJECT_NAME}.pc.in" "${CMAKE_PKGCONFIG_OUTPUT_DIRECTORY}/${PR
 ###
 # main target
 ###
-add_library(${PROJECT_NAME} SHARED ${cpp_redis_sources})
+add_library(${PROJECT_NAME} ${cpp_redis_sources})
 
 ###
 # includes
@@ -178,7 +178,7 @@ include(GNUInstallDirs)
 install(TARGETS ${PROJECT_NAME} EXPORT ${EXPORT_TARGET_NAME}
   LIBRARY
   RESOURCE DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
-install(EXPORT ${EXPORT_TARGET_NAME} DESTINATION lib/${PROJECT_NAME} EXPORT_LINK_INTERFACE_LIBRARIES)
+#install(EXPORT ${EXPORT_TARGET_NAME} DESTINATION lib/${PROJECT_NAME} EXPORT_LINK_INTERFACE_LIBRARIES)
 
 ###
 # examples
